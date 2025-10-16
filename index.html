@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kerem Eroğlu - Mechanical Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-bg: #000000;
+            --secondary-bg: #1d1d1f;
+            --accent-color: #0071e3;
+            --text-primary: #f5f5f7;
+            --text-secondary: #a1a1a6;
+            --card-bg: #1d1d1f;
+            --hover-bg: #2d2d2f;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--primary-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 60px 20px;
+            background: radial-gradient(ellipse at center, #1a1a1a 0%, #000000 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0,113,227,0.1) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 8vw, 96px);
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -0.03em;
+            background: linear-gradient(135deg, #f5f5f7 0%, #a1a1a6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(24px, 4vw, 40px);
+            font-weight: 600;
+            color: var(--accent-color);
+            margin-bottom: 30px;
+        }
+
+        .hero-description {
+            font-size: clamp(16px, 2vw, 21px);
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 50px;
+            line-height: 1.5;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 32px;
+            border-radius: 980px;
+            font-size: 17px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0077ed;
+            transform: scale(1.05);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-20px); }
+            60% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 120px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: clamp(40px, 6vw, 64px);
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .section-subtitle {
+            font-size: clamp(18px, 2.5vw, 24px);
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text p {
+            font-size: 19px;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            line-height: 1.8;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            background: var(--hover-bg);
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-card {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 24px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), #00d4ff);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            background: var(--hover-bg);
+        }
+
+        .skill-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .skill-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .skill-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .skill-card ul {
+            list-style: none;
+        }
+
+        .skill-card li {
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+            font-size: 16px;
+        }
+
+        .skill-card li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+
+        /* Experience Section */
+        .experience-timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent-color) 0%, transparent 100%);
+        }
+
+        .experience-item {
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -46px;
+            top: 8px;
+            width: 14px;
+            height: 14px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px var(--primary-bg), 0 0 0 6px var(--accent-color);
+        }
+
+        .experience-card {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .experience-card:hover {
+            background: var(--hover-bg);
+            transform: translateX(10px);
+        }
+
+        .experience-header {
+            margin-bottom: 20px;
+        }
+
+        .experience-title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .experience-company {
+            font-size: 18px;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+        }
+
+        .experience-date {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .experience-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .experience-description li {
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .experience-description li::marker {
+            color: var(--accent-color);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-15px);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+
+        .project-content {
+            padding: 30px;
+        }
+
+        .project-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            background: rgba(0, 113, 227, 0.1);
+            color: var(--accent-color);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .contact-card {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            background: var(--hover-bg);
+            transform: scale(1.05);
+        }
+
+        .contact-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .contact-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .contact-card p {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        .contact-card a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card a:hover {
+            opacity: 0.8;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary-bg);
+            padding: 40px 20px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            section {
+                padding: 80px 20px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-timeline {
+                padding-left: 30px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Kerem Eroğlu</h1>
+            <div class="hero-subtitle">Mechanical Engineer</div>
+            <p class="hero-description">
+                Yaşar Üniversitesi Makine Mühendisliği 4. sınıf öğrencisi. Savunma sanayii ve otomotiv sektöründe CAD tasarım, üretim süreçleri ve AR-GE deneyimi ile pratik mühendislik çözümleri geliştiriyorum.
+            </p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">Projelerimi Gör</a>
+                <a href="#contact" class="btn btn-secondary">İletişime Geç</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M19 12l-7 7-7-7"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="section-header">
+            <h2 class="section-title">Hakkımda</h2>
+            <p class="section-subtitle">Çözüm odaklı, disiplinli ve öğrenmeye açık bir mühendis adayı</p>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <p>
+                    Çalışkan, çözüm odaklı ve sorumluluk sahibi bir Makine Mühendisliği öğrencisiyim. Yaşar Üniversitesi'nde %100 İngilizce eğitim alırken, teorik bilgimi pratik deneyimlerle birleştiriyorum.
+                </p>
+                <p>
+                    Katmerciler A.Ş.'de savunma sanayii araçlarının üretiminde staj yaparak CNC imalat, kalite kontrol ve AR-GE süreçlerinde deneyim kazandım. SolidWorks, AutoCAD ve Fusion 360 gibi CAD programlarına hakimim.
+                </p>
+                <p>
+                    Üretim sahasında çalışmayı, pratik mühendislik çözümleri geliştirmeyi ve otomotiv sektöründe kariyer yapmayı hedefliyorum.
+                </p>
+            </div>
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Yıllık Eğitim</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2+</div>
+                    <div class="stat-label">Ay Staj</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">CAD Yazılımı</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">B2</div>
+                    <div class="stat-label">İngilizce</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="section-header">
+            <h2 class="section-title">Yetenekler</h2>
+            <p class="section-subtitle">Teknik bilgi ve pratik deneyimle desteklenen yetkinlikler</p>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">🎨</div>
+                <h3>CAD/CAM Yazılımları</h3>
+                <ul>
+                    <li>SolidWorks (İleri Seviye)</li>
+                    <li>AutoCAD (İleri Seviye)</li>
+                    <li>Fusion 360 (Orta-İleri)</li>
+                    <li>3D Modelleme & Tasarım</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">💻</div>
+                <h3>Programlama & Analiz</h3>
+                <ul>
+                    <li>MATLAB (Orta Seviye)</li>
+                    <li>Python (Temel-Orta)</li>
+                    <li>Microsoft Excel (İleri)</li>
+                    <li>Teknik Döküman Hazırlama</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">⚙️</div>
+                <h3>Üretim & İmalat</h3>
+                <ul>
+                    <li>CNC Torna & Freze</li>
+                    <li>Lazer & Plazma Kesim</li>
+                    <li>Kalite Kontrol</li>
+                    <li>İmalat Süreç Takibi</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔬</div>
+                <h3>Mühendislik Analiz</h3>
+                <ul>
+                    <li>Mekanizma Tasarımı</li>
+                    <li>Kinematik Analiz</li>
+                    <li>AR-GE & Ürün Geliştirme</li>
+                    <li>Teknik Çizim & GD&T</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="section-header">
+            <h2 class="section-title">Deneyim</h2>
+            <p class="section-subtitle">Profesyonel çalışma hayatım ve kazandığım tecrübeler</p>
+        </div>
+        <div class="experience-timeline">
+            <div class="experience-item">
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <h3 class="experience-title">Stajyer Mühendis</h3>
+                        <div class="experience-company">Katmerciler A.Ş. - Savunma Sanayii</div>
+                        <div class="experience-date">Yaz 2024 (2 Ay)</div>
+                    </div>
+                    <ul class="experience-description">
+                        <li>TOMA ve HIZIR gibi savunma sanayi araçlarının üretim süreçlerinde aktif rol aldım</li>
+                        <li>CNC torna, freze, lazer ve plazma kesim makinelerinde pratik deneyim kazandım</li>
+                        <li>AR-GE departmanında kritik komponentlerin teknik çizimlerini SolidWorks ile hazırladım</li>
+                        <li>Kalite kontrol, boyutsal ölçüm ve muayene süreçlerine katıldım</li>
+                        <li>Üretim planlaması ve iş akışı dokümantasyonu konularında tecrübe edindim</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="experience-item">
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <h3 class="experience-title">Etkinlik Sorumlusu</h3>
+                        <div class="experience-company">Yaşar Üniversitesi Endüstri Mühendisliği Topluluğu</div>
+                        <div class="experience-date">2022-2023</div>
+                    </div>
+                    <ul class="experience-description">
+                        <li>Kariyer Günleri, Sektör Günleri ve Zirve etkinliklerinde organizasyon</li>
+                        <li>Üst düzey yöneticilerin karşılanması ve koordinasyonu</li>
+                        <li>Profesyonel iletişim ve organizasyon becerilerimi geliştirdim</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="section-header">
+            <h2 class="section-title">Projeler</h2>
+            <p class="section-subtitle">Üniversite ve kişisel çalışmalarımdan seçmeler</p>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">⚙️</div>
+                <div class="project-content">
+                    <h3 class="project-title">4 Çubuk Mekanizma Tasarımı</h3>
+                    <p class="project-description">
+                        4 çubuk mekanizmalarının sentezi ve kinematik analizi üzerine kapsamlı bir tasarım projesi. Fusion 360 ve AutoCAD kullanılarak silindir-crank mekanizmalarının modellemesi ve hareket simülasyonları gerçekleştirildi.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Fusion 360</span>
+                        <span class="tag">AutoCAD</span>
+                        <span class="tag">Kinematik</span>
+                        <span class="tag">Simülasyon</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">🛡️</div>
+                <div class="project-content">
+                    <h3 class="project-title">Savunma Sanayii Araç Komponentleri</h3>
+                    <p class="project-description">
+                        Katmerciler A.Ş. stajım sırasında TOMA ve HIZIR araçları için kritik komponentlerin teknik çizimlerini hazırladım. AR-GE departmanında SolidWorks ile 3D modelleme ve teknik dokümantasyon çalışmaları yaptım.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">SolidWorks</span>
+                        <span class="tag">AR-GE</span>
+                        <span class="tag">Teknik Çizim</span>
+                        <span class="tag">3D Model</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">🔧</div>
+                <div class="project-content">
+                    <h3 class="project-title">CAD Modelleme Portföyü</h3>
+                    <p class="project-description">
+                        Eğitim sürecimde ve staj deneyimlerimde oluşturduğum çeşitli mekanik parça ve montaj tasarımları. SolidWorks, AutoCAD ve Fusion 360 kullanılarak hazırlanan teknik çizimler ve 3D modeller içermektedir.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">CAD</span>
+                        <span class="tag">3D Modelleme</span>
+                        <span class="tag">Montaj</span>
+                        <span class="tag">GD&T</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="section-header">
+            <h2 class="section-title">İletişim</h2>
+            <p class="section-subtitle">Benimle iletişime geçin, birlikte çalışalım</p>
+        </div>
+        <div class="contact-content">
+            <p class="hero-description">
+                Staj, tam zamanlı pozisyon veya proje işbirlikleri için benimle iletişime geçebilirsiniz. Otomotiv ve üretim sektöründe kariyer fırsatları arıyorum.
+            </p>
+            <div class="contact-info">
+                <div class="contact-card">
+                    <div class="contact-icon">📧</div>
+                    <h3>E-posta</h3>
+                    <p><a href="mailto:keremeroglu13@hotmail.com">keremeroglu13@hotmail.com</a></p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">📱</div>
+                    <h3>Telefon</h3>
+                    <p><a href="tel:+905533118178">0553 311 81 78</a></p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">📍</div>
+                    <h3>Konum</h3>
+                    <p>Bornova, İzmir</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Kerem Eroğlu. Tüm hakları saklıdır.</p>
+        <p style="margin-top: 10px;">Yaşar Üniversitesi Makine Mühendisliği</p>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and sections
+        document.querySelectorAll('.skill-card, .experience-card, .project-card, .stat-card, .contact-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
